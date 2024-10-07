@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حساب الوقت المنقضي</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .counter {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>الوقت المنقضي منذ 10:46 يوم 27 سبتمبر 2024</h1>
+    <div class="counter" id="counter"></div>
+
+    <script>
+        // تحديد التاريخ والوقت الذي تريد حساب الوقت منه
+        const targetDate = new Date("September 27, 2024 10:46:00").getTime();
+
+        function updateCounter() {
+            const now = new Date().getTime();
+            const elapsedTime = now - targetDate;
+
+            // حساب الوقت بالثواني، الدقائق، الساعات، الأيام، الأسابيع، والشهور
+            const seconds = Math.floor(elapsedTime / 1000);
+            const minutes = Math.floor(seconds / 60);
+            const hours = Math.floor(minutes / 60);
+            const days = Math.floor(hours / 24);
+            const weeks = Math.floor(days / 7);
+            const months = Math.floor(days / 30.44);  // تقدير الشهر بـ 30.44 يومًا
+
+            // تحديث المحتوى على الصفحة
+            document.getElementById("counter").innerHTML = `
+                <p>الثواني: ${seconds}</p>
+                <p>الأيام: ${days}</p>
+                <p>الأسابيع: ${weeks}</p>
+                <p>الشهور: ${months}</p>
+            `;
+        }
+
+        // تحديث العد كل ثانية
+        setInterval(updateCounter, 1000);
+    </script>
+</body>
+</html>
